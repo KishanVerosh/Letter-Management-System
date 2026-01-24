@@ -1,6 +1,8 @@
 package com.uoc.lms.controller;
 //import com.uoc.lms.service.AuthService;
 import com.uoc.lms.service.LetterService;
+import com.uoc.lms.service.LetterTrackService;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +13,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LetterController {
 
     private final LetterService letterService;
+    private final LetterTrackService letterTrackService;
 
-
-    public LetterController(LetterService letterService) {
+    public LetterController(LetterService letterService,
+                            LetterTrackService letterTrackService) {
         this.letterService = letterService;
+        this.letterTrackService = letterTrackService;
     }
 
     @GetMapping("/addLetter")
@@ -99,5 +103,22 @@ public String myLettersPage(HttpSession session, Model model) {
 
         return "redirect:/updateLetter";
     }
+    @GetMapping("/letters/{id}/track")
+public String viewLetterTrack(@PathVariable Long id,
+                              HttpSession session,
+                              Model model) {
+
+    String username = (String) session.getAttribute("username");
+    if (username == null) {
+        return "redirect:/";
+    }
+
+    model.addAttribute("username", username);
+    model.addAttribute("tracks",
+            letterTrackService.getTrackByLetterId(id));
+
+    return "letter-track";
+}
+
 }
 

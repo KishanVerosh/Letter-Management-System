@@ -24,6 +24,12 @@
             <td th:text="${letter.senderAddress}"></td>
             <td th:text="${letter.receiverAddress}"></td>
             <td th:text="${letter.letterStatus}"></td>
+             <td>
+        <a th:href="@{/letters/{id}/track(id=${letter.id})}"
+           class="btn btn-sm btn-info">
+            Track
+        </a>
+    </td>
         </tr>
         </tbody>
     </table>

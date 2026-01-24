@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Locations</title>
+</head>
+<body>
+
+<h2>Location List</h2>
+
+<a href="/add">Add Location</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Location</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="loc : ${locations}">
+        <td th:text="${loc.id}"></td>
+        <td th:text="${loc.location}"></td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${loc.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
