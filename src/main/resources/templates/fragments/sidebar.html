@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="sidebar" class="sidebar">
+    <h3>Letter In/Out</h3>
+    <a th:href="@{/dashboard}">Dashboard</a>
+    <a th:href="@{/addLetter}">Add Letter</a>
+    <a th:href="@{/updateLetter}">Update Letter</a>
+    <a th:href="@{/letterList}">Letter List</a>
+    <a th:href="@{/aboutUs}">About Us</a>
+
+    <div class="sidebar-footer">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-danger w-100 mt-2">Log Out</button>
+        </form>
+        <a href="https://expo.dev/accounts/dinn24/projects/newLetter/builds/abac5d3b-33e3-4bbf-83a5-57b24cc69fb3" target="_blank">
+            <u>Get the Mobile App</u>
+        </a>
+    </div>
+</div>
+
+
+</body>
+</html>
